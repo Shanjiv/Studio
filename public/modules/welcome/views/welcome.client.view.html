@@ -1,0 +1,46 @@
+<div class="container container-xs-height">
+
+    <div class="row row-xs-height">
+        <div data-ui-view="header"></div>
+    </div>
+
+    <div class="row row-xs-height" data-ng-controller="WelcomeCtrl">
+
+                <div class="col-xs-12 col-xs-height">
+                    <div class="jumbotron text-center">
+                        <h1 style="padding-bottom: 10px;">Studiere <span class="outerLineThrough">
+                            <span class="innerLineThrough">Härter</span></span> Cleverer</h1>
+
+                        <div data-ng-controller="UniversitiesCtrl" data-ng-init="find()">
+
+                                <!--ui-select for university name-->
+                                <ui-select data-ng-model="university.selected" theme="bootstrap" resset-search-input="false" class="col-xs-6 col-xs-offset-3">
+                                    <ui-select-match placeholder="Wo studierst Du?">
+                                        {{$select.selected.fullName}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="u in universities | filter: $select.search">
+                                        <medium data-ng-bind-html="u.fullName | highlight: $select.search"></medium>
+                                        (<small data-ng-bind-html="u.shortName | highlight: $select.search"></small>)
+                                    </ui-select-choices>
+                                </ui-select>
+
+                                <br/>
+                            <br/>
+                                University ShortName below:
+                                ({{university.selected.shortName}})
+
+                        </div>
+
+                    </div>
+                </div>
+
+    </div>
+
+    <div class="row row-xs-height">
+        <div class="col-xs-12 col-xs-height">
+            <a ui-sref="app">Link to Platform</a><br>
+        </div>
+    </div>
+
+
+</div>

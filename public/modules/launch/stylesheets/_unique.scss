@@ -1,0 +1,109 @@
+// unique view
+#launch-unique {
+    // Background
+    background: $gray85;
+
+    // Variables
+    $zero: 40px;
+    $xs: 45px;
+    $sm: 50px;
+    $md: 55px;
+    $lg: 60px;
+
+    // Responsive design
+    padding-top: $zero;
+    padding-bottom: $zero*(2/3);
+    font-size: 16px;
+    @include respond-to($screen-xs) {
+        padding-top: $xs;
+        padding-bottom: $xs*(2/3);
+        font-size: 16px;
+    }
+    @include respond-to($screen-sm) {
+        padding-top: $sm;
+        padding-bottom: $sm/2;
+        font-size: 18px;
+    }
+    @include respond-to($screen-md) {
+        padding-top: $md;
+        padding-bottom: $md/3;
+        font-size: 20px;
+    }
+    @include respond-to($screen-lg) {
+        padding-top: $lg;
+        padding-bottom: $lg/3;
+        font-size: 22px;
+    }
+
+    // Tutorial on styling list items
+    // http://css.maxdesign.com.au/listutorial/master.htm
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        // Standard html lists have some preset margin to the left. We killed it. But you can set it individually yourself.
+//        margin-left: 1em;
+
+        li {
+            background: {
+                image: url(../../launch/images/check_sign-01.png);
+                repeat: no-repeat;
+                position: 0 .1em;
+            }
+            // position: 50%; supposedly pushes the image, bullet or whatever to the middle of the list item in a vertical perspective.
+            // The author suggests using em units to set this property as it will adjust to changing font sizes.
+
+            background-size: $zero;
+            margin-bottom: $zero/2;
+            padding-left: 3.0em;
+            @include respond-to($screen-xs) {
+                background-size: $xs;
+                margin-bottom: $xs/2;
+                padding-left: 3.5em;
+            }
+            @include respond-to($screen-sm) {
+                background-size: $sm;
+                margin-bottom: $sm/2;
+                padding-left: 4.0em;
+            }
+            @include respond-to($screen-md) {
+                background-size: $md;
+                margin-bottom: $md/2;
+                padding-left: 4.5em;
+            }
+            @include respond-to($screen-lg) {
+                background-size: $lg;
+                margin-bottom: $lg/2;
+                padding-left: 5.0em;
+            }
+
+            // To move the content away from the background image apply padding-left to the li element.
+            // padding-left: 3.5em; (Integrated into the responsive section above)
+
+            // Adding animations
+            &.ng-enter {
+                -webkit-animation: bounceIn 1s;
+                -moz-animation: bounceIn 1s;
+                -ms-animation: bounceIn 1s;
+                animation: bounceIn 1s;
+            }
+
+            &.ng-leave {
+                -webkit-animation: bounceOut 1s;
+                -moz-animation: bounceOut 1s;
+                -ms-animation: bounceOut 1s;
+                animation: bounceOut 1s;
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+}

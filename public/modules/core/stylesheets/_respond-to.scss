@@ -1,0 +1,11 @@
+@mixin respond-to-val($val, $query) {
+    @media ($val: $query) {
+        @content
+    }
+}
+
+@mixin respond-to($query) {
+    @media (min-width: $query) {
+        @content
+    }
+}

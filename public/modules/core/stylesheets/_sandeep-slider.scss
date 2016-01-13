@@ -1,0 +1,58 @@
+.sandeep-slider {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+
+    .sandeep-slide {
+        background: $ivory;
+        position: relative;
+
+        img {
+            max-width:90%;
+        }
+
+        %ng-hide {
+            -webkit-transition: all linear 0.5s;
+            -moz-transition: all linear 0.5s;
+            -o-transition: all linear 0.5s;
+            transition: all linear 0.5s;
+            display: block!important;
+        }
+        &.ng-hide-add {
+            @extend %ng-hide;
+            opacity: 1;
+            &.ng-hide-add-active {
+                opacity: 0;
+            }
+        }
+
+        &.ng-hide-remove {
+            @extend %ng-hide;
+            opacity: 0;
+            &.ng-hide-remove-active {
+                opacity: 1;
+            }
+        }
+    }
+
+
+    .sandeep-arrows-left {
+        position: absolute;
+        top: 50px;
+        left: 10px;
+        i {
+            color: $suicide
+        }
+    }
+
+    .sandeep-arrows-right {
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        i {
+            color: $suicide
+        }
+    }
+
+}
+

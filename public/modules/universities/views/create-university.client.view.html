@@ -1,0 +1,94 @@
+<section data-ng-controller="UniversitiesCtrl" data-ng-init="find()">
+<!--Lazy load universities as it only serves the purpose of ui.bootstrap typeahead-->
+
+    <!--Begin of row-->
+    <!--University section-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Page header-->
+        <div class="col-xs-12 page-header">
+            <h1>Universität anlegen</h1>
+        </div>
+        <!--Button group-->
+        <div class="col-xs-12">
+            <div class="pull-right btn-group">
+                <!--Back button-->
+                <a class="btn btn-default" href="/#!/universities">
+                    <i class="fa fa-arrow-circle-left"></i> Back
+                </a>
+            </div>
+        </div>
+
+        <!--University Form-->
+        <form name="universityForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset class="col-xs-12 col-md-6">
+
+                <!--University full name-->
+                <div class="form-group" ng-class="{ 'has-error' : universitiesForm.fullName.$dirty && universitiesForm.fullName.$invalid}">
+                    <label class="control-label" for="fullName">Vollständiger Name der Bildungseinrichtung</label><br>
+                    Beispiel: "Technische Universität Darmstadt"
+                    <div class="controls">
+                        <input
+                        autocomplete="off"
+                        type="text"
+                        data-ng-model="university.fullName"
+                        id="fullName"
+                        class="form-control"
+                        placeholder="fullName"
+                        typeahead="fullName as fullName.fullName for fullName in universities | filter:$viewValue | limitTo:5"
+                        typeahead-focus-first="false"
+                        required>
+                    </div>
+                </div>
+
+                <!--University short name-->
+                <div class="form-group">
+                    <label class="control-label" for="shortName">Name in Kurzform</label><br>
+                    Beispiel: "TU Darmstadt"
+                    <div class="controls">
+                        <input
+                        autocomplete="off"
+                        type="text"
+                        data-ng-model="university.shortName"
+                        id="shortName"
+                        class="form-control"
+                        placeholder="shortName"
+                        typeahead="shortName as shortName.shortName for shortName in universities | filter:$viewValue | limitTo:5"
+                        typeahead-focus-first="false"
+                        required>
+                    </div>
+                </div>
+
+                <!--University abbreviation-->
+                <div class="form-group">
+                    <label class="control-label" for="abbreviation">Abkürzung</label><br>
+                    Beispiel: "TUD"
+                    <div class="controls">
+                        <input
+                        autocomplete="off"
+                        type="text"
+                        data-ng-model="university.abbreviation"
+                        id="abbreviation"
+                        class="form-control"
+                        placeholder="abbreviation"
+                        typeahead="abbreviation as abbreviation.abbreviation for abbreviation in universities | filter:$viewValue | limitTo:5"
+                        typeahead-focus-first="false"
+                        required>
+                    </div>
+                </div>
+
+                <!--Submit button-->
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" value="Erstellen">
+                </div>
+
+                <!--Error display-->
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+</section>

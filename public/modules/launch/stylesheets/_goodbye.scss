@@ -1,0 +1,34 @@
+// goodbye-view
+#launch-goodbye {
+
+    // Background
+    background: $turquoise;
+    font-weight: $semi-bold;
+
+    list-style-type: none;
+    a {
+        color: $text-color;
+        &:hover {
+            color: $ivory
+        }
+    }
+    li {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100px;
+        display: inline;
+    }
+
+    #goodbye-small {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+
+    #goodbye-large {
+        margin-top: 12px;
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+
+}

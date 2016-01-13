@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div id="explain-header" class="col-xs-12 centered">
+            <h1>Der Smarteste Weg zum Studienerfolg.</h1>
+        </div>
+
+        <div data-ng-controller="SandeepSliderCtrl">
+            <!--1-2-3 for Mobile/Tablet-->
+            <div class="visible-xs-block col-xs-12 centered">
+                <sandeep-slider images="images"/>
+            </div>
+
+            <!--1-2-3 for Desktop/Large Screen-->
+            <div id="explain-large" class="visible-sm-block visible-md-block visible-lg-block">
+                <div data-ng-repeat="image in images" class="col-sm-4">
+                    <img ng-src="{{image.src}}"/>
+                </div>
+            </div>
+        </div>
+
+    </div><!--row-->
+</div><!--container-->
+
+
+
+

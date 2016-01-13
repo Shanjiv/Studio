@@ -1,0 +1,56 @@
+// Application.css
+/*Core variables and mixins*/
+@import 'corporate-identity';
+
+// Customize Bootstrap
+// Find all variable names on this site: http://getbootstrap.com/customize/#less-variables
+// Then @import the overrides before @importing the bootstrap-sass files.
+@import 'bootstrap/bootstrap-override';
+@import 'bootstrap/bootstrap-vertical';
+@import 'bootstrap/bootstrap-ui-select';
+
+// When using bootstrap-sass with Compass, Sprockets, or Mincer, you must import the relevant path helpers before Bootstrap itself
+@import '../../../lib/bootstrap-sass/assets/stylesheets/bootstrap-compass';
+@import '../../../lib/bootstrap-sass/assets/stylesheets/bootstrap';
+
+// Mixins
+@import 'respond-to';
+// Responsive Design Helper
+
+// Modules
+@import 'base.platform';
+@import '../../../modules/admins/stylesheets/base.admins';
+@import '../../../modules/degrees/stylesheets/base.degrees';
+@import '../../../modules/launch/stylesheets/base.launch';
+@import '../../../modules/subjects/stylesheets/base.subjects';
+@import '../../../modules/tags/stylesheets/base.tags';
+@import '../../../modules/tutors/stylesheets/base.tutors';
+@import '../../../modules/universities/stylesheets/base.universities';
+@import '../../../modules/users/stylesheets/base.users';
+@import '../../../modules/welcome/stylesheets/base.welcome';
+
+// Directives
+@import 'sandeep-slider';
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background: $ivory;
+    /* Margin bottom by footer height */
+    margin-bottom: 45px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 45px;
+}
+
+.nonDraggableImage{
+    -webkit-user-drag: none;
+}

@@ -1,0 +1,81 @@
+<section data-ng-controller="UniversitiesCtrl" data-ng-init="findOne()">
+
+    <!--Begin of row-->
+    <!--University section-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Page header-->
+        <div class="col-xs-12 page-header">
+            <h1>Universität bearbeiten</h1>
+        </div>
+
+        <!--Button group-->
+        <div class="col-xs-12">
+            <div class="pull-right btn-group">
+                <!--Back button-->
+                <a class="btn btn-default" href="/#!/universities/{{university._id}}">
+                    <i class="fa fa-arrow-circle-left"></i> Back
+                </a>
+                <!--Delete button-->
+                <a class="btn btn-danger" data-ng-click="remove();" data-ng-show="authentication.user._id == university.creator._id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+        </div>
+
+        <!--University Form-->
+        <form name="universityForm" class="form-horizontal" data-ng-submit="update(universityForm.$valid)" novalidate>
+            <fieldset class="col-xs-12 col-md-6">
+
+                <!--University full name-->
+                <div class="form-group" ng-class="{ 'has-error' : submitted && universityForm.fullName.$invalid}">
+                    <label class="control-label" for="fullName">Vollständiger Name der Bildungseinrichtung</label><br>
+                    Beispiel: "Technische Universität Darmstadt"
+                    <div class="controls">
+                        <input name="fullName" type="text" data-ng-model="university.fullName" id="fullName" class="form-control" placeholder="fullName" required/>
+                    </div>
+                    <div ng-show="submitted && universityForm.fullName.$invalid" class="help-block">
+                        <p data-ng-show="universityForm.fullName.$error.required" class="text-danger">Dieses Eingabefeld ist zwingend erforderlich</p>
+                    </div>
+                </div>
+
+                <!--University short name-->
+                <div class="form-group" ng-class="{ 'has-error' : submitted && universityForm.shortName.$invalid}">
+                    <label class="control-label" for="shortName">Name in Kurzform</label><br>
+                    Beispiel: "TU Darmstadt"
+                    <div class="controls">
+                        <input name="shortName" type="text" data-ng-model="university.shortName" id="shortName" class="form-control" placeholder="shortName" required/>
+                    </div>
+                    <div ng-show="submitted && universityForm.shortName.$invalid" class="help-block">
+                        <p data-ng-show="universityForm.shortName.$error.required" class="text-danger">Dieses Eingabefeld ist zwingend erforderlich</p>
+                    </div>
+                </div>
+
+                <!--University abbreviation-->
+                <div class="form-group" ng-class="{ 'has-error' : submitted && universityForm.abbreviation.$invalid}">
+                    <label class="control-label" for="abbreviation">Abkürzung</label><br>
+                    Beispiel: "TUD"
+                    <div class="controls">
+                        <input name="abbreviation" type="text" data-ng-model="university.abbreviation" id="abbreviation" class="form-control" placeholder="abbreviation" required/>
+                    </div>
+                    <div ng-show="submitted && universityForm.abbreviation.$invalid" class="help-block">
+                        <p data-ng-show="universityForm.abbreviation.$error.required" class="text-danger">Dieses Eingabefeld ist zwingend erforderlich</p>
+                    </div>
+                </div>
+
+                <!--Submit button-->
+                <div class="form-group">
+                    <input type="submit" value="Aktualisieren" class="btn btn-default">
+                </div>
+
+                <!--Error display-->
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</section>

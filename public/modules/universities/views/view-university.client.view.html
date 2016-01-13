@@ -1,0 +1,128 @@
+<section>
+
+    <!--Begin of row-->
+    <!--University section-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Page header-->
+        <div class="col-xs-12 page-header">
+            <h1 data-ng-bind="vm.university.fullName"></h1>
+        </div>
+
+        <div class="col-xs-12">
+            <!--Button group-->
+            <div class="pull-right btn-group" data-ng-controller="UniversitiesCtrl" data-ng-init="findOne()">
+                <!--Back button-->
+                <a class="btn btn-default" href="/#!/universities">
+                    <i class="fa fa-arrow-circle-left"></i> Back
+                </a>
+                <!--Edit button-->
+                <a class="btn btn-primary" href="/#!/universities/{{university._id}}/edit" data-ng-show="authentication.user._id == vm.university.creator._id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <!--Delete button-->
+                <a class="btn btn-danger" data-ng-click="remove();" data-ng-show="authentication.user._id == university.creator._id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+
+
+            <!--Display of update information-->
+            <small>
+                <em class="text-muted">
+                    Aktualisiert von
+                    <span data-ng-bind="vm.university.updater.displayName"></span>
+                    <!--several seconds ago-->
+                    <span am-time-ago="vm.university.updated"></span>
+                </em>
+                <p class="lead" data-ng-bind="vm.university.shortName"></p>
+            </small>
+        </div>
+
+        <div class="col-xs-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Bezeichnung</th>
+                        <th>Wert</th>
+                    </tr>
+                </thead>
+                <tbody class="table-striped table-condensed">
+                    <tr>
+                        <td>Full Name</td>
+                        <td>{{vm.university.fullName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Short Name</td>
+                        <td>{{vm.university.shortName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Abbreviation</td>
+                        <td>{{vm.university.abbreviation}}</td>
+                    </tr>
+                    <tr>
+                        <td>Updated on</td>
+                        <td>{{vm.university.updated}}</td>
+                    </tr>
+                    <tr>
+                        <td>Updated by</td>
+                        <td>{{vm.university.updater.username}}</td>
+                    </tr>
+                    <tr>
+                        <td>Created on</td>
+                        <td>{{vm.university.created}}</td>
+                    </tr>
+                    <tr>
+                        <td>Created by</td>
+                        <td>{{vm.university.creator.username}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-xs-3">
+            <h3>Aktuelle Voranmeldungen</h3>
+            <h1>{{vm.university.leads}}</h1>
+        </div>
+
+    </div>
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <!--End of row-->
+
+    <!--Begin of row-->
+    <!--Degree section-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <div class="col-xs-12 page-header">
+            <h1>Angebotene Studiengänge</h1>
+        </div>
+
+        <!--ui.grid-->
+        <div class="col-xs-9" data-ng-if="vm.degrees.$resolved && vm.degrees.length">
+            <div ui-grid="gridDegreesList" ui-grid-selection ui-grid-resize-columns id="listDegreesGrid" class="grid-degrees-list"></div>
+        </div>
+
+        <!--Details Button-->
+        <div class="col-xs-3" data-ng-show="selectedRow[0]">
+            <h4>{{selectedRow[0].shortPath}}</h4>
+
+            <a class="btn btn-default" href="/#!/universities/{{vm.university._id}}/degrees/{{selectedRow[0]._id}}">
+                <i class="glyphicon glyphicon-th-list"></i> Details
+            </a>
+        </div>
+
+        <!--Create One-->
+        <div class="col-xs-12 alert alert-warning text-center" data-ng-if="vm.degrees.$resolved && !vm.degrees.length">
+            Keine Einträge bisher, wieso <a href="/#!/universities/{{vm.university._id}}/degrees/create">erstellst</a> du keinen?
+        </div>
+
+        <div style="margin-top: 15px;" class="col-xs-12" data-ng-if="vm.degrees.$resolved && vm.degrees.length">
+            <a class="btn btn-primary" href="/#!/universities/{{vm.university._id}}/degrees/create">
+                <i class="glyphicon glyphicon-file"></i> Erstellen
+            </a>
+        </div>
+
+    </div>
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <!--End of row-->
+</section>

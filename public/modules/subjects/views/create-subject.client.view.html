@@ -1,0 +1,111 @@
+<section data-ng-controller="SubjectsCtrl" data-ng-init="find()"><!--We are calling this find simply to provide ui-bootstrap typeahead support.-->
+
+    <!--Begin of row-->
+    <!--Subjects section-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Top section-->
+        <div data-ng-controller="UniversitiesCtrl" data-ng-init="findOne()">
+            <!--Page header-->
+            <div class="col-xs-12 page-header">
+                <h3 style="margin-bottom: 0;" data-ng-bind="university.shortName"></h3>
+                <h1>Studienfach anlegen</h1>
+            </div>
+
+            <!--Button group-->
+            <div class="col-xs-12">
+                <div class="pull-right btn-group">
+                    <!--Back button-->
+                    <a class="btn btn-default" href="/#!/universities/{{university._id}}/degrees/{{queryParams.degree}}">
+                        <i class="fa fa-arrow-circle-left"></i> Back
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--Subject Form-->
+        <form name="subjectsForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset class="col-xs-12 col-md-6">
+                
+                <!--Subject full title-->
+                <div class="form-group" ng-class="{ 'has-error' : subjectsForm.fullTitle.$dirty && subjectsForm.fullTitle.$invalid}">
+                    <label class="control-label" for="fullTitle">Vollständiger Name des Studienfachs</label><br>
+                    Beispiel: "Quantitative Methoden"
+                    <div class="controls">
+                        <input
+                        autocomplete="off"
+                        type="text"
+                        data-ng-model="subject.fullTitle"
+                        id="fullTitle"
+                        class="form-control"
+                        placeholder="fullTitle"
+                        typeahead="fullTitle as fullTitle.fullTitle for fullTitle in subjects | filter:$viewValue | limitTo:5"
+                        typeahead-focus-first="false"
+                        required>
+                    </div>
+                </div>
+
+                <!--Subject short title-->
+                <div class="form-group" ng-class="{ 'has-error' : subjectsForm.shortTitle.$dirty && subjectsForm.shortTitle.$invalid}">
+                    <label class="control-label" for="shortTitle">Abkürzung</label><br>
+                    Beispiel: "QM"
+                    <div class="controls">
+                        <input
+                        autocomplete="off"
+                        type="text"
+                        data-ng-model="subject.shortTitle"
+                        id="shortTitle"
+                        class="form-control"
+                        placeholder="shortTitle"
+                        typeahead="shortTitle as shortTitle.shortTitle for shortTitle in subjects | filter:$viewValue | limitTo:5"
+                        typeahead-focus-first="false"
+                        required>
+                    </div>
+                </div>
+
+                <!--Subject semester-->
+                <div class="form-group">
+                    <label style="margin-bottom: 4px;" class="control-label" for="semester">Semester</label>
+                    <div style="margin-bottom: 6px;" slider id="semester" data-ng-model="subject.semester" start=1 end=8 step=1></div>
+                    Gewählt: {{subject.semester}}
+                </div>
+
+                <!--Subject description-->
+                <div class="form-group">
+                    <label class="control-label" for="description">Kursbeschreibung</label>
+                    <textarea class="form-control" id="description" data-ng-model="subject.description" rows="6" placeholder="Kurz. Prägnant. Aufschlussreich.">
+                    </textarea>
+                </div>
+
+                <!--Submit button-->
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" value="Erstellen">
+                </div>
+
+                <!--Error display-->
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+                
+            </fieldset>
+
+            <fieldset class="col-xs-12 col-md-6">
+
+                <!--Degrees ui-select multi-->
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+
+                        <!--Here we will add the ui-select multi box for selecting degrees.-->
+
+
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+        </form>
+
+    </div>
+
+</section>        

@@ -1,0 +1,106 @@
+{
+		"lib": {
+				"css": {
+						"head": {
+								"public/dist/head.lib.min.css": [
+										"public/lib/fontawesome/css/font-awesome.min.css",
+										"public/lib/angular-ui-select/dist/select.min.css",
+										"public/lib/select2/select2.css",
+										"public/lib/angular-ui-grid/ui-grid.min.css",
+										"public/lib/nouislider/jquery.nouislider.css",
+										"public/lib/animate-css/animate.min.css"
+								]
+						},
+						"header": {
+								"public/dist/header.lib.min.css": []
+						},
+						"footer": {
+								"public/dist/footer.lib.min.css": []
+						}
+				},
+				"js": {
+						"head": {
+								"public/dist/head.lib.min.js": [
+
+								]
+						},
+						"header": {
+								"public/dist/header.lib.min.js": [
+
+								]
+						},
+						"footer": {
+								"public/dist/footer.lib.min.js": [
+										"public/lib/jquery/dist/jquery.js",
+										"public/lib/angular/angular.js",
+										"public/lib/angular-ui-router/release/angular-ui-router.js",
+										"public/lib/angular-resource/angular-resource.js",
+										"public/lib/angular-animate/angular-animate.js",
+										"public/lib/wow/dist/wow.min.js",
+										"public/lib/angular-touch/angular-touch.js",
+										"public/lib/gsap/src/uncompressed/TweenMax.js",
+										"public/lib/angular-bootstrap/ui-bootstrap-tpls.js",
+										"public/lib/angular-ui-utils/ui-utils.js",
+										"public/lib/angular-sanitize/angular-sanitize.min.js",
+										"public/lib/lodash/dist/lodash.min.js",
+										"public/lib/angular-ui-select/dist/select.min.js",
+										"public/lib/angular-ui-grid/ui-grid.min.js",
+										"public/lib/angular-google-maps/dist/angular-google-maps.min.js",
+										"public/lib/nouislider/jquery.nouislider.js",
+										"public/lib/nouislider/Link.js",
+										"public/lib/angular-nouislider/src/nouislider.min.js",
+										"public/lib/moment/min/moment-with-locales.min.js",
+										"public/lib/moment/locale/de.js",
+										"public/lib/moment-timezone/builds/moment-timezone-with-data.min.js",
+										"public/lib/angular-moment/angular-moment.min.js",
+										"public/lib/angulartics/dist/angulartics.min.js",
+										"public/lib/angulartics/dist/angulartics-ga.min.js"
+								]
+						}
+				}
+		},
+		"app": {
+				"css": {
+						"head": {
+								"public/dist/head.app.min.css": [
+										"public/modules/core/stylesheets/core.css"
+								]
+						},
+						"header": {
+								"public/dist/header.app.min.css": []
+						},
+						"footer": {
+								"public/dist/footer.app.min.css": []
+						}
+				},
+				"js": {
+						"head": {
+								"public/dist/head.app.min.js": [
+								]
+						},
+						"header": {
+								"public/dist/header.app.min.js": [
+								]
+						},
+						"footer": {
+								"public/dist/footer.app.min.js": [
+										"public/modules/application.js",
+										"public/config.js",
+										"public/application.js",
+										"public/modules/*/*.js",
+										"public/modules/*/config/*.js",
+										"public/modules/*/controllers/*.js",
+										"public/modules/*/directives/*.js",
+										"public/modules/*/animations/*.js",
+										"public/modules/*/services/*.js",
+										"public/modules/*/filters/*.js"
+
+								]
+						},
+						"tests": [
+								"public/lib/angular-mocks/angular-mocks.js",
+								"public/modules/*/tests/*.js"
+						]
+				}
+		}
+}

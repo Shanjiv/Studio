@@ -1,0 +1,21 @@
+<div id="platform">
+    <!-- Topbar Navigation injection -->
+    <div data-ui-view="header"></div>
+
+    <div class="container container-xs-height">
+
+        <!--If you put content in the ui-views you then operate from the edges.-->
+        <div class="row row-xs-height">
+            <div class="col-xs-2">
+                <div data-ui-view="sidebar"></div>
+            </div>
+            <div class="col-xs-10">
+                <div data-ui-view="content"></div>
+            </div>
+        </div>
+
+    </div><!--Container-->
+
+    <!-- Footer section -->
+    <div data-ui-view="footer"></div>
+</div>

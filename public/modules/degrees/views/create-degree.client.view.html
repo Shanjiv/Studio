@@ -1,0 +1,100 @@
+<section data-ng-controller="DegreesCtrl" data-ng-init="find()">
+<!--Lazy load degrees as it merely serves the purpose of ui.bootstrap typeahead-->
+
+    <!--Begin of row-->
+    <!--Degrees section-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Top section-->
+        <div data-ng-controller="UniversitiesCtrl" data-ng-init="findOne()">
+            <!--Page header-->
+            <div class="col-xs-12 page-header">
+                <h3 style="margin-bottom: 0;" data-ng-bind="university.shortName"></h3>
+                <h1>Studiengang anlegen</h1>
+            </div>
+
+            <!--Button group-->
+            <div class="col-xs-12">
+                <div class="pull-right btn-group">
+                    <!--Back button-->
+                    <a class="btn btn-default" href="/#!/universities/{{university._id}}">
+                        <i class="fa fa-arrow-circle-left"></i> Back
+                    </a>
+                </div>
+            </div>          
+        </div>
+
+        <!--Degree Form-->
+        <form name="degreeForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset class="col-xs-12 col-md-6">
+
+                <!--Degree full path-->
+                <div class="form-group" ng-class="{ 'has-error' : degreeForm.fullPath.$dirty && degreeForm.fullPath.$invalid}">
+                    <label class="control-label" for="fullPath">Vollständiger Name des Studiengangs</label><br>
+                    Beispiel: "Banking and Finance"
+                    <div class="controls">
+                        <input
+                        autocomplete="off"
+                        type="text"
+                        data-ng-model="degree.fullPath"
+                        id="fullPath"
+                        class="form-control"
+                        placeholder="fullPath"
+                        typeahead="fullPath as fullPath.fullPath for fullPath in degrees | filter:$viewValue | limitTo:5"
+                        typeahead-focus-first="false"
+                        required>
+                    </div>
+                </div>
+
+                <!--Degree short path-->
+                <div class="form-group" ng-class="{ 'has-error' : degreeForm.shortPath.$dirty && degreeForm.shortPath.$invalid}">
+                    <label class="control-label" for="shortPath">Abkürzung</label><br>
+                    Beispiel: "MBF"
+                    <div class="controls">
+                        <input
+                        autocomplete="off"
+                        type="text"
+                        data-ng-model="degree.shortPath"
+                        id="shortPath"
+                        class="form-control"
+                        placeholder="shortPath"
+                        typeahead="shortPath as shortPath.shortPath for shortPath in degrees | filter:$viewValue | limitTo:5"
+                        typeahead-focus-first="false"
+                        required>
+                    </div>
+                </div>
+
+                <!--Degree level-->
+                <div class="form-group">
+                    <div class="btn-group">
+                        <label class="btn btn-primary" data-ng-model="degree.level" btn-radio="'Bachelor'">Bachelor</label>
+                        <label class="btn btn-primary" data-ng-model="degree.level" btn-radio="'Master'">Master</label>
+                        <label class="btn btn-primary" data-ng-model="degree.level" btn-radio="'Diplom'">Diplom</label>
+                        <label class="btn btn-primary" data-ng-model="degree.level" btn-radio="'Lehramt'">Lehramt</label>
+                        <label class="btn btn-primary" data-ng-model="degree.level" btn-radio="'Staatsexamen'">Staatsexamen</label>
+                    </div>
+                </div>
+
+                <!--Degree description-->
+                <div class="form-group">
+                    <label class="control-label" for="description">Beschreibung</label>
+                    <textarea class="form-control" id="description" data-ng-model="degree.description" rows="6" placeholder="Kurz. Prägnant. Aufschlussreich.">
+                    </textarea>
+                </div>
+
+                <!--Submit button-->
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" value="Absenden">
+                </div>
+
+                <!--Error display-->
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+</section>

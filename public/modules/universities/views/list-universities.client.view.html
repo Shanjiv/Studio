@@ -1,0 +1,48 @@
+<section>
+
+    <!--Begin of row-->
+    <!--University section-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Page header-->
+        <div class="col-xs-12 page-header">
+            <h1>List of Universities</h1>
+        </div>
+
+        <!--ui.grid-->
+        <div class="col-xs-9" data-ng-if="vm.universities.$resolved && vm.universities.length">
+            <div ui-grid="gridUniversitiesList" ui-grid-selection ui-grid-resize-columns id="listUniversitiesGrid" class="grid-universities-list"></div>
+        </div>
+
+        <div class="col-xs-3" ng-cloak>
+            <!--Total Leads-->
+            <div ng-cloak>
+                <h3>Aktuelle Voranmeldungen</h3>
+                <h1>{{vm.universities|sumByKey:'leads'}}</h1>
+            </div>
+            <!--Details Button-->
+            <div  data-ng-show="selectedRow[0]">
+                <h4>{{selectedRow[0].shortPath}}</h4>
+
+                <a class="btn btn-default" ui-sref="platform.viewUniversity({ universityId: selectedRow[0]._id })">
+                    <i class="glyphicon glyphicon-th-list"></i> Details
+                </a>
+            </div>
+        </div>
+
+        <!--Create One-->
+        <div class="col-xs-12 alert alert-warning text-center" data-ng-if="vm.universities.$resolved && !vm.universities.length">
+            Keine Einträge bisher, wieso <a href="/#!/universities/create">erstellst</a> du keinen?
+        </div>
+
+        <div style="margin-top: 15px;" class="col-xs-12" data-ng-if="vm.universities.$resolved && vm.universities.length">
+            <a class="btn btn-primary" href="/#!/universities/create">
+                <i class="glyphicon glyphicon-file"></i> Erstellen
+            </a>
+        </div>
+
+    </div>
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <!--End of row-->
+
+</section>

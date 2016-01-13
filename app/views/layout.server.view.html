@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="image_src" href="/modules/core/images/fb_thumbnail.png"/>
+
+    <!-- Open Graph Data -->
+    <meta property="og:title" content="Studito - Study Smart">
+    <meta property="og:url" content="http://www.studito.de">
+    <meta property="og:site_name" content="studito">
+    <meta property="og:description" content="Studito - Die Tutoring Plattform für Studenten.">
+    <meta property="og:image" content="http://www.studito.de/modules/core/images/fb_thumbnail.png">
+
+    <!--[if IE]><link rel="shortcut icon" href="http://www.studito.de/modules/core/images/flavicon.ico" type="image/icon"><![endif]--><!-- Internet Explorer-->
+    <link rel="icon" type="image/png" href="http://www.studito.de/modules/core/images/flavicon.png">
+
+    <!-- JS Injection -->
+    {% for jsHeadFile in jsHeadFiles %}
+    <script type="text/javascript" src="{{jsHeadFile}}"></script>
+    {% endfor %}
+
+    <!-- CSS Injection -->
+    {% for cssHeadFile in cssHeadFiles %}
+    <link rel="stylesheet" href="{{cssHeadFile}}"/>
+    {% endfor %}
+
+    <title>{{title}} - Study Smart.</title>
+</head>
+
+<body class="ng-cloak">
+  <!--Header section-->
+  <!-- JS Injection  -->
+  {% for jsHeaderFile in jsHeaderFiles %}
+  <script type="text/javascript" src="{{jsHeaderFile}}"></script>
+  {% endfor %}
+
+  <!-- CSS Injection  -->
+  {% for cssHeaderFile in cssHeaderFiles %}
+  <link rel="stylesheet" href="{{cssHeaderFile}}">
+  {% endfor %}
+
+  <!-- Font Injection -->
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,600|Pacifico' rel='stylesheet' type='text/css'>
+
+  <!--Google Maps API Integration-->
+  <!--Note how the language setting for Google API has been set to German-->
+  <script src='//maps.googleapis.com/maps/api/js?sensor=false&language=de'></script>
+
+  <!-- Internet Explorer Support for ui-select
+  IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie
+  For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim
+  -->
+  <!--[if lt IE 9]>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+  <script>
+      document.createElement('ui-select');
+      document.createElement('ui-select-match');
+      document.createElement('ui-select-choices');
+  </script>
+  <![endif]-->
+
+  {% block content %}{% endblock %}
+
+  <!-- JS Injection  -->
+  {% for jsFooterFile in jsFooterFiles %}
+  <script type="text/javascript" src="{{jsFooterFile}}"></script>
+  {% endfor %}
+
+  <!-- CSS Injection  -->
+  {% for cssFooterFile in cssFooterFiles %}
+  <link rel="stylesheet" href="{{cssFooterFile}}">
+  {% endfor %}
+
+  <!-- Google Analytics Component -->
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-58771374-1', 'auto');
+  </script>
+
+</body>
+</html>

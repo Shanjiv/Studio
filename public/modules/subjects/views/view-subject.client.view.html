@@ -1,0 +1,94 @@
+<section>
+
+    <!--Begin of row-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Page header-->
+        <div class="col-xs-12 page-header" data-ng-controller="UniversitiesCtrl">
+            <h3 style="margin-bottom: 0;" data-ng-bind="university.shortName"></h3>
+            <h1 data-ng-bind="vm.subject.fullTitle"></h1>
+        </div>
+
+        <div class="col-xs-12">
+            <!--Button group-->
+            <div class="pull-right btn-group" data-ng-controller="SubjectsCtrl" data-ng-init="findOne()">
+                <!--Back button-->
+                <a class="btn btn-default" href="/#!/universities/{{vm.subject.degrees[0].university}}/degrees/{{vm.subject.degrees[0]._id}}">
+                    <i class="fa fa-arrow-circle-left"></i> Back
+                </a>
+                <!--Edit button-->
+                <a class="btn btn-primary" href="/#!/universities/{{vm.subject.degrees[0].university}}/subjects/{{vm.subject._id}}/edit" data-ng-show="authentication.user._id == subject.creator._id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <!--Delete button-->
+                <a class="btn btn-danger" data-ng-click="remove();" data-ng-show="authentication.user._id == subject.creator._id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+
+            <!--Display of update information-->
+            <small>
+                <em class="text-muted">
+                    Aktualisiert von
+                    <span data-ng-bind="vm.subject.updater.displayName"></span>
+                    <!--several seconds ago-->
+                    <span am-time-ago="vm.subject.updated"></span>
+                </em>
+                <p class="lead" data-ng-bind="vm.subject.shortTitle"></p>
+            </small>
+        </div>
+
+        <div class="col-xs-9" ng-cloak>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Bezeichnung</th>
+                    <th>Wert</th>
+                </tr>
+                </thead>
+                <tbody class="table-striped table-condensed">
+                <tr>
+                    <td>Full Title</td>
+                    <td>{{vm.subject.fullTitle}}</td>
+                </tr>
+                <tr>
+                    <td>Short Title</td>
+                    <td>{{vm.subject.shortTitle}}</td>
+                </tr>
+                <tr>
+                    <td>Semester</td>
+                    <td>{{vm.subject.semester}}</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>{{vm.subject.description}}</td>
+                </tr>
+                <tr>
+                    <td>Updated on</td>
+                    <td>{{vm.subject.updated}}</td>
+                </tr>
+                <tr>
+                    <td>Updated by</td>
+                    <td>{{vm.subject.updater.username}}</td>
+                </tr>
+                <tr>
+                    <td>Created on</td>
+                    <td>{{vm.subject.created}}</td>
+                </tr>
+                <tr>
+                    <td>Created by</td>
+                    <td>{{vm.subject.creator.username}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-xs-3">
+            <!--<h3>Tags</h3>-->
+        </div>
+
+    </div>
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <!--End of row-->
+
+</section>

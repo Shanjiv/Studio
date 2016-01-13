@@ -1,0 +1,99 @@
+<div class="container container-xs-height">
+    <!--row-->
+    <div class="row row-xs-height">
+
+        <!--column = gray box-->
+        <div id="hello-input" class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
+
+            <!--static component-->
+            <div id="hello-text" class="centered">
+                <h1>Studito</h1>
+                <h2 class=" visible-sm-block visible-md-block visible-lg-block">Nicht verzweifeln! Hilfe kommt bald!</h2>
+                <h2 class="visible-xs-block">Nicht verzweifeln!<br> Hilfe kommt bald!</h2>
+                <h4 class="visible-sm-block visible-md-block visible-lg-block col-sm-10 col-sm-offset-1">Studito kommt, um dir dein Studium zu erleichtern. Wir glauben daran, dass richtiges Tutoring den Studienerfolg entscheiden kann. Trag dich ein und erfahre als Erster sobald es losgeht!</h4>
+            </div>
+
+            <!--input form component-->
+            <section id="hello-form" class="centered">
+                <form name="launchForm" class="form-horizontal col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2" novalidate>
+                    <fieldset>
+
+                        <!-- University Field -->
+                        <div class="form-group">
+                            <label class="control-label" style="margin-bottom: 5px;">Bildungsinstitut</label><br>
+
+                            <!--ui-select for university name-->
+                            <ui-select id="hello-university" data-ng-model="selected.university" theme="bootstrap" on-select="getDegreeData($model);" reset-search-input="false">
+                                <ui-select-match placeholder="Wo studierst Du?">
+                                    {{$select.selected.shortName}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="university._id as university in universities | filter: $select.search">
+                                    <div data-ng-bind-html="university.fullName | highlight: $select.search"></div>
+                                    <small>
+                                        {{university.shortName}} (im Volksmund: {{university.abbreviation}})
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+
+                            <!--pre json output field-->
+                            <!--<pre data-ng-hide="selected.university == null">{{selected.university | json}}</pre>-->
+                        </div>
+
+                        <!-- Degree Path -->
+                        <!--<div class="form-group" data-ng-hide="selected.university == null">-->
+                        <div class="form-group">
+                            <label class="control-label" style="margin-bottom: 5px;">Studiengang</label><br>
+
+
+                            <!--ui-select for degree name-->
+                            <ui-select id="hello-degree" data-ng-model="selected.degree" theme="bootstrap" reset-search-input="false">
+                                <ui-select-match placeholder="Was studierst Du?">
+                                    {{$select.selected.fullPath}} <span data-ng-hide="$select.selected.level==='Lehramt'">({{$select.selected.level}})</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="degree._id as degree in degrees | filter: $select.search">
+                                    <div data-ng-bind-html="degree.fullPath | highlight: $select.search"></div>
+                                    <small>
+                                        {{degree.level}} ({{degree.shortPath}})
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>
+
+                            <!--pre json output field-->
+                            <!--<pre data-ng-hide="selected.degree == null">{{selected.degree | json}}</pre>-->
+
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <!--<div class="form-group" data-ng-hide="selected.degree == null">-->
+                            <label for="hello-email">E-Mail</label>
+                            <input type="email" id="hello-email" name="email" class="form-control" data-ng-model="selected.email" placeholder="No Spam. Period.">
+
+
+                            <!--pre json output field-->
+                            <!--<pre data-ng-hide="selected.email == null">{{selected.email | json}}</pre>-->
+
+                        </div>
+
+                        <!-- Submit Button -->
+                        <!--<div class="form-group" data-ng-hide="selected.email == null">-->
+                        <div class="form-group">
+                            <input type="submit" value="Jetzt Voranmelden!" class="btn btn-primary" data-ng-click="create()">
+                        </div>
+
+                        <!-- Error Display -->
+                        <div data-ng-show="error" class="text-warning" style="margin-bottom: 12px;">
+                            <strong data-ng-bind="error"></strong>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </section>
+
+            <div id="hello-bottom-text" class="visible-xs-block">
+                <h4>Studito kommt, um dir dein Studium zu erleichtern. Wir glauben daran, dass richtiges Tutoring den Studienerfolg entscheiden kann. Trag dich ein und erfahre als Erster sobald es losgeht!</h4>
+            </div>
+
+        </div><!-- /col-lg-8 -->
+    </div><!--row-->
+</div>

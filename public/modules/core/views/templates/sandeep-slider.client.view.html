@@ -1,0 +1,19 @@
+<div class="sandeep-slider">
+
+    <div class="sandeep-slide nonDraggableImage" ng-repeat="image in images" ng-show="image.visible" ng-swipe-right="next()" ng-swipe-left="prev()">
+        <img ng-src="{{image.src}}" />
+    </div>
+
+    <div class="sandeep-arrows-left">
+        <a href="#" ng-click="prev()">
+            <i class="fa fa-angle-left fa-2x"></i>
+        </a>
+    </div>
+
+    <div class="sandeep-arrows-right">
+        <a href="#" ng-click="next()">
+            <i class="fa fa-angle-right fa-2x"></i>
+        </a>
+    </div>
+
+</div>

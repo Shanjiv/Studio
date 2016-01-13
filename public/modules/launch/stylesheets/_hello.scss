@@ -1,0 +1,162 @@
+// hello view
+#launch-hello {
+
+    // Setting the background image
+    // Play with 'fixed' within the "background" attribute. Cool effect.
+    background: $turquoise url(../../launch/images/background_xs.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    @include respond-to($screen-xs) {
+        // xs image is enough
+    }
+    @include respond-to($screen-sm) {
+        // xs image is enough
+    }
+    @include  respond-to($screen-md) {
+        background: $turquoise url(../../launch/images/background_md.jpg) no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    @include  respond-to($screen-lg) {
+        background: $turquoise url(../../launch/images/background_lg.png) no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    h1 {
+        font-size: 45px;
+        font-weight: $semi-bold;
+        letter-spacing: 3px;
+        color: $dark-turquoise;
+        @include respond-to($screen-xs) {
+            font-size: 65px;
+            padding-top: 12px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        @include respond-to($screen-sm) {
+            font-size: 75px;
+            padding-top: 12px;
+        }
+        @include respond-to($screen-md) {
+            font-size: 90px;
+            padding-top: 20px;
+        }
+    }
+
+    h2 {
+        font-size: 18px;
+        margin-top: 0;
+        @include respond-to($screen-xs) {
+            font-size: 25px;
+        }
+        @include respond-to($screen-sm) {
+            font-size: 30px;
+        }
+        @include respond-to($screen-md) {
+            font-size: 32px;
+        }
+    }
+
+    h4 {
+        @include respond-to($screen-xs) {
+            font-size: 18px;
+            text-align: center;
+        }
+        @include respond-to($screen-sm) {
+            font-size: 20px;
+        }
+        @include respond-to($screen-md) {
+            font-size: 22px;
+        }
+    }
+
+    // input state
+    #hello-input {
+        background:rgba($gray85, 0.45);
+        margin-bottom: 20px;
+        @include respond-to($screen-xs) {
+            padding-top: 0;
+            margin-top: 15px;
+        }
+        @include respond-to($screen-sm) {
+            padding-top: 10px;
+            padding-left: 0;
+            padding-right: 0;
+            margin-top: 20px;
+        }
+        @include  respond-to($screen-md) {
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+
+        .hello-text {
+        }
+
+        #hello-bottom-text {
+            @include respond-to($screen-xs) {
+                text-align: center;
+            }
+            margin-top: 280px;
+        }
+
+        #hello-email {
+            text-align: center;
+            // Centering the input's placeholder text
+            &::-webkit-input-placeholder {
+                text-align: center;
+            }
+            &:-moz-placeholder { /* Firefox 18- */
+                text-align: center;
+            }
+            &::-moz-placeholder {  /* Firefox 19+ */
+                text-align: center;
+            }
+            &:-ms-input-placeholder {
+                text-align: center;
+            }
+            input, input[placeholder]{
+                text-align: center;
+            }
+        }
+    }
+
+
+    %hello {
+        margin-top: 60px;
+        margin-bottom: 60px;
+        padding: 10px;
+        padding-top: 0;
+        padding-bottom: 20px;
+        background:rgba($gray85, 0.7);
+        font-size: 20px;
+    }
+
+    // success state
+    #hello-success {
+        @extend %hello;
+    }
+
+    // failure state
+    #hello-failure {
+        @extend %hello;
+    }
+
+    // verified state
+    #hello-verified {
+        @extend %hello;
+    }
+
+    // expired state
+    #hello-expired {
+        @extend %hello;
+        padding-bottom: 10px;
+    }
+}

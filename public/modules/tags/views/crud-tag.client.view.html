@@ -1,0 +1,179 @@
+<section data-ng-controller="TagsCtrl" data-ng-init="find()">
+
+    <!--Begin of row-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Page header-->
+        <div class="col-xs-12 page-header">
+
+            <tabset>
+                <!--Find Tag-->
+                <tab heading="Suche Tag" select="find()">
+
+                    <!--Top button box-->
+                    <div class="row" style="margin-top: 12px;" data-ng-hide="selected.tag == null">
+                        <div class="col-xs-12">
+                            <!--Edit Toggle & Delete-->
+                            <div class="pull-right btn-group">
+                                <!--Edit button-->
+                                <a class="btn btn-primary" data-ng-click="isCollapsed = !isCollapsed">
+                                    <i class="glyphicon glyphicon-edit"></i> Edit
+                                </a>
+                                <!--Delete button-->
+                                <a class="btn btn-danger" data-ng-click="remove(selected.tag);" data-ng-show="authentication.user._id == selected.tag.creator._id">
+                                    <i class="glyphicon glyphicon-trash"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Left box-->
+                    <div class="col-xs-12 col-md-6">
+                        <!--ui.select-->
+                        <label class="control-label">Suchfeld</label><br>
+                        Beispiel: ["TM1", "TM2", "TM3"] oder ["leicht", "mittel", "schwierig"]
+
+                        <ui-select data-ng-model="selected.tag" theme="bootstrap" reset-search-input="false" id="tag">
+                            <ui-select-match placeholder="Suche Tag...">
+                                {{selected.tag.content}} (cat. {{selected.tag.category}})
+                            </ui-select-match>
+                            <ui-select-choices repeat="tag in tags | filter: $select.search">
+                                <medium data-ng-bind-html="tag.content | highlight: $select.search"></medium>
+                                (<small data-ng-bind-html="tag.category | highlight: $select.search"></small>)
+                            </ui-select-choices>
+                        </ui-select>
+
+                        <br>
+                        <!--pre json output field-->
+                        <pre data-ng-hide="selected.tag == null">{{selected.tag | json}}</pre>
+
+                        <!--ui.bootstrap.alert-->
+                        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+                    </div>
+
+                    <!--Right box-->
+                    <div class="col-xs-12 col-md-6">
+                        <!--Collapse section-->
+                        <div collapse="isCollapsed">
+                            <form name="tagsUpdateForm" class="form-horizontal" data-ng-submit="isCollapsed = !isCollapsed;update()" novalidate>
+                                <fieldset>
+
+                                    <!--Tag content field-->
+                                    <div class="form-group">
+                                        <label class="control-label" for="tag.content">Tag Inhalt</label><br>
+                                        Beispiel: ["TM1", "TM2", "TM3"] oder ["leicht", "mittel", "schwierig"]
+                                        <div class="controls">
+                                            <input
+                                            autocomplete="off"
+                                            type="text"
+                                            data-ng-model="selected.tag.content"
+                                            id="tag.content"
+                                            class="form-control"
+                                            placeholder="Inhalt des Tags"
+                                            typeahead="content as content.content for content in tags | filter:$viewValue | limitTo:5"
+                                            typeahead-focus-first="false"
+                                            required>
+                                        </div>
+                                    </div>
+
+                                    <!--Tag category field-->
+                                    <div class="form-group">
+                                        <label class="control-label" for="tag.category">Tag Kategorie</label><br>
+                                        Beispiel: "Schwierigkeit, Thema, Professor, etc."
+                                        <div class="controls">
+                                            <input
+                                            autocomplete="off"
+                                            type="text"
+                                            data-ng-model="selected.tag.category"
+                                            id="tag.category"
+                                            class="form-control"
+                                            placeholder="Eine Kategorie für dein Tag..."
+                                            typeahead="category as category.category for category in tags | filter:$viewValue | limitTo:5"
+                                            typeahead-focus-first="false"
+                                            required>
+                                        </div>
+                                    </div>
+
+                                    <!--Submit button-->
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-default" value="Bearbeiten">
+                                    </div>
+
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </tab>
+
+                <!--New Tag-->
+                <tab heading="Neuer Tag">
+
+                    <!--Tag Form-->
+                    <form name="tagsForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+                        <fieldset class="col-xs-12 col-md-6">
+
+                            <!--Tag content-->
+                            <div class="form-group" ng-class="{ 'has-error' : tagsForm.content.$dirty && tagsForm.content.$invalid}">
+                                <label class="control-label" for="tagContent">Tag Inhalt</label><br>
+                                Beispiel: ["TM1", "TM2", "TM3"] oder ["leicht", "mittel", "schwierig"]
+                                <div class="controls">
+                                    <input
+                                    autocomplete="off"
+                                    type="text"
+                                    data-ng-model="tag.content"
+                                    id="tagContent"
+                                    class="form-control"
+                                    placeholder="Inhalt des Tags"
+                                    typeahead="tag.content for tag in tags | filter:$viewValue | limitTo:5"
+                                    typeahead-focus-first="false"
+                                    required>
+                                </div>
+                            </div>
+
+                            <!--Tag category-->
+                            <div class="form-group">
+                                <label class="control-label" for="tagCategory">Tag Kategorie</label><br>
+                                Beispiel: "Schwierigkeit, Thema, Professor, etc."
+                                <div class="controls">
+                                    <input
+                                    autocomplete="off"
+                                    type="text"
+                                    data-ng-model="tag.category"
+                                    id="tagCategory"
+                                    class="form-control"
+                                    placeholder="Eine Kategorie für dein Tag..."
+                                    typeahead="tag.category for tag in tags | filter:$viewValue | limitTo:5 | unique:'tag.category'"
+                                    typeahead-focus-first="false"
+                                    required>
+                                </div>
+                            </div>
+
+                            <!--Submit button-->
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-default" value="Erstellen">
+                            </div>
+
+                            <!--debugging-->
+                            <!--category-->
+                            <!--<pre>{{tag.category | json}}</pre>-->
+                            <!--<br>-->
+                            <!--content-->
+                            <!--<pre>{{tag.content|json}}</pre>-->
+
+                            <!--Error display-->
+                            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+                        </fieldset>
+                    </form>
+
+                </tab>
+
+                <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+                    {{tab.content}}
+                </tab>
+            </tabset>
+
+        </div>
+    </div>
+</section>

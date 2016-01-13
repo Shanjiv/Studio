@@ -1,0 +1,85 @@
+<section data-ng-controller="SubjectsCtrl" data-ng-init="findOne()">
+
+    <!--Begin of row-->
+    <!-- --------------------------------------------------------------------------------------------------------- -->
+    <div class="row">
+        <!--Page header-->
+        <div class="col-xs-12 page-header" data-ng-controller="UniversitiesCtrl" data-ng-init="findOne()">
+            <h3 style="margin-bottom: 0;" data-ng-bind="university.shortName"></h3>
+            <h1>Studienfach bearbeiten</h1>
+        </div>
+
+        <!--Button group-->
+        <div class="col-xs-12">
+            <div class="pull-right btn-group">
+                <!--Back button-->
+                <a class="btn btn-default" href="/#!/universities/{{subject.degrees[0].university}}/degrees/{{subject.degrees[0]._id}}">
+                    <i class="fa fa-arrow-circle-left"></i> Back
+                </a>
+                <!--Delete button-->
+                <a class="btn btn-danger" data-ng-click="remove();" data-ng-show="authentication.user._id == subject.creator._id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+        </div>
+
+        <!--Subject Form-->
+        <!--find() is called merely for bootstrap ui typeahead purposes. It does not need to be resolved upfront prior rendering the view.-->
+        <form name="subjectsForm" class="form-horizontal" data-ng-init="find()" data-ng-submit="update(subjectsForm.$valid)" novalidate>
+            <fieldset class="col-xs-12 col-md-6">
+
+                <!--Subject full title-->
+                <div class="form-group" ng-class="{ 'has-error' : subjectsForm.fullTitle.$dirty && subjectsForm.fullTitle.$invalid}">
+                    <label class="control-label" for="fullTitle">Vollständiger Name des Studienfachs</label><br>
+                    Beispiel: "Quantitative Methoden"
+                    <div class="controls">
+                        <input name="fullTitle" type="text" data-ng-model="subject.fullTitle" id="fullTitle" class="form-control" placeholder="fullTitle" required/>
+                    </div>
+                    <div ng-show="submitted && subjectsForm.fullTitle.$invalid" class="help-block">
+                        <p data-ng-show="subjectsForm.fullTitle.$error.required" class="text-danger">Dieses Eingabefeld ist zwingend erforderlich</p>
+                    </div>
+                </div>
+
+                <!--Subject short title-->
+                <div class="form-group" ng-class="{ 'has-error' : subjectsForm.shortTitle.$dirty && subjectsForm.shortTitle.$invalid}">
+                    <label class="control-label" for="shortTitle">Abkürzung</label><br>
+                    Beispiel: "QM"
+                    <div class="controls">
+                        <input name="shortTitle" type="text" data-ng-model="subject.shortTitle" id="shortTitle" class="form-control" placeholder="shortTitle" required/>
+                    </div>
+                    <div ng-show="submitted && subjectsForm.shortTitle.$invalid" class="help-block">
+                        <p data-ng-show="subjectsForm.shortTitle.$error.required" class="text-danger">Dieses Eingabefeld ist zwingend erforderlich</p>
+                    </div>
+                </div>
+
+                <!--Subject semester-->
+                <div class="form-group">
+                    <label style="margin-bottom: 4px;" class="control-label" for="semester">Semester</label>
+                    <div style="margin-bottom: 6px;" slider id="semester" data-ng-model="subject.semester" start=1 end=8 step=1></div>
+                    Gewählt: {{subject.semester}}
+                </div>
+
+                <!--Subject description-->
+                <div class="form-group">
+                    <label class="control-label" for="description">Kursbeschreibung</label>
+                    <textarea class="form-control" id="description" data-ng-model="subject.description" rows="6" placeholder="Kurz. Prägnant. Aufschlussreich.">
+                    </textarea>
+                </div>
+
+                <!--Submit button-->
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" value="Bearbeiten">
+                </div>
+
+                <!--Error display-->
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+
+            </fieldset>
+
+        </form>
+
+    </div>
+
+</section>
